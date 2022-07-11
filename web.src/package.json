@@ -8,11 +8,15 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "aardio": "^2.7.9",
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@arco-design/web-vue": "^2.33.0",
     "@vitejs/plugin-vue": "^2.3.3",
     "rimraf": "^3.0.2",
+    "unplugin-auto-import": "^0.9.2",
+    "unplugin-vue-components": "^0.21.1",
     "vite": "^2.9.12"
   }
 }

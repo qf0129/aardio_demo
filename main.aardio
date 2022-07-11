@@ -1,13 +1,23 @@
 ﻿
 import chrome.edge;
+import web.rest.client;
+import console
+
+
 var theApp  = chrome.edge.app(); 
- 
+var client = web.rest.client();
+client.checkResponseResult = false;
+
 // 导出为Javascript中的 aardio 对象
 theApp.external = {
-    onCounterUpdate = function(name,value){
-        if(name!==null && value!==null){
-        	return "aardio 返回的值：网页中 React 状态值改变了：value:"+value;
-        } 
+    httpRequest = function(url, params, method, headers){
+        //console.log("AARDIO >>",  url, params, method, headers)
+        client.setHeaders(headers)
+		var data, errMsg, errCode = client.request(url, params, method);	
+		console.log("AARDIO resp >>",  data)
+		console.log("AARDIO resp >>",  errMsg)
+		console.log("AARDIO resp >>",  errCode)
+		return {data: data, errMsg: errMsg, errCode: errCode}
     }; 
 }
  
