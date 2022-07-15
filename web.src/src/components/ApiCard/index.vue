@@ -113,4 +113,7 @@ export default {
     width: 90%; */
     margin-bottom: 20px;
 }
+.demo-item{
+    border: 1px solid #333;
+}
 </style>
