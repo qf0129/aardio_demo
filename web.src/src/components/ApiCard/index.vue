@@ -10,8 +10,15 @@
             <a-col :span="17">
                 <a-input size="large" v-model="form.req.url" placeholder="URL" />
             </a-col>
-            <a-col :span="3">
+            <a-col :span="2">
                 <a-button w size="large" type="primary" long @click="onSend">Send</a-button>
+            </a-col>
+            <a-col :span="1">
+                <a-button type="text" shape="circle" @click="showMore = !showMore"
+                    style="float: right; font-size: 16px; color: #aaa;">
+                    <icon-double-up v-if="showMore" />
+                    <icon-double-down v-else />
+                </a-button>
             </a-col>
             <a-col :span="1">
                 <a-button type="text" shape="circle" style="float: right; font-size: 16px; color: #aaa;">
@@ -29,16 +36,10 @@
                 </a-tab-pane>
             </a-tabs>
         </div>
-        <!-- <a-row style="padding:10px;" v-if="showMore">
-            <a-col :span="20" ></a-col>
-            <a-col :span="4">
-                <a-button w size="large" type="primary" long @click="onSend">Send</a-button>
-            </a-col>
-        </a-row> -->
-        <div class="showMoreBar" style="text-align: center;" @click="showMore=!showMore">
+        <!-- <div class="showMoreBar" style="text-align: center;" @click="showMore = !showMore">
             <icon-double-up v-if="showMore" />
             <icon-double-down v-else />
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -109,14 +110,17 @@ export default {
     width: 90%; */
     margin-bottom: 10px;
 }
-.demo-item{
+
+.demo-item {
     border: 1px solid #333;
 }
-.showMoreBar{
+
+.showMoreBar {
     color: #aaa;
     cursor: pointer;
     text-align: center;
-    &:hover{
+
+    &:hover {
         color: #165dff;
         background-image: linear-gradient(#fff, #eee);
     }
