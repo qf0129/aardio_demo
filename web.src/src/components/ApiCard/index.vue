@@ -1,22 +1,25 @@
 
 <template>
-    <a-card class="api_card" hoverable>
-        <a-row>
+    <div class="api_card" hoverable>
+        <a-row style="padding:10px;">
             <a-col :span="3">
                 <a-select size="large" type="primary" v-model="form.req.method">
                     <a-option v-for="item in methods" :value="item.value" :label="item.label" />
                 </a-select>
             </a-col>
-            <a-col :span="20">
+            <a-col :span="17">
                 <a-input size="large" v-model="form.req.url" placeholder="URL" />
             </a-col>
+            <a-col :span="3">
+                <a-button w size="large" type="primary" long @click="onSend">Send</a-button>
+            </a-col>
             <a-col :span="1">
-                <a-button type="text" shape="circle" style="float: right; font-size: 20px; color: #aaa;">
+                <a-button type="text" shape="circle" style="float: right; font-size: 16px; color: #aaa;">
                     <icon-close />
                 </a-button>
             </a-col>
         </a-row>
-        <a-card :bordered="false">
+        <div v-if="showMore" style="padding: 10px;">
             <a-tabs type="capsule">
                 <a-tab-pane key="1" title="Headers">
                     <a-textarea placeholder="Please enter something" allow-clear />
@@ -25,40 +28,33 @@
                     <a-textarea placeholder="Please enter something" allow-clear />
                 </a-tab-pane>
             </a-tabs>
-        </a-card>
-        <a-row>
-            <a-col>
+        </div>
+        <!-- <a-row style="padding:10px;" v-if="showMore">
+            <a-col :span="20" ></a-col>
+            <a-col :span="4">
                 <a-button w size="large" type="primary" long @click="onSend">Send</a-button>
             </a-col>
-        </a-row>
-        <a-grid :cols="3" :colGap="12" :rowGap="16" class="grid-demo-grid" :collapsed="false">
-            <a-grid-item class="demo-item">item</a-grid-item>
-            <a-grid-item class="demo-item">item</a-grid-item>
-            <a-grid-item class="demo-item">item</a-grid-item>
-            <a-grid-item class="demo-item" :offset="1">item | offset - 1</a-grid-item>
-            <a-grid-item class="demo-item">item</a-grid-item>
-            <a-grid-item class="demo-item" :span="3">item | span - 3</a-grid-item>
-            <a-grid-item class="demo-item">item</a-grid-item>
-            <a-grid-item class="demo-item">item</a-grid-item>
-            <a-grid-item class="demo-item" suffix #="{ overflow }">
-                suffix | overflow: {{ overflow }}
-            </a-grid-item>
-        </a-grid>
-    </a-card>
+        </a-row> -->
+        <div class="showMoreBar" style="text-align: center;" @click="showMore=!showMore">
+            <icon-double-up v-if="showMore" />
+            <icon-double-down v-else />
+        </div>
+    </div>
 </template>
 
 
 <script>
 import aardio from 'aardio'
-import { IconClose } from '@arco-design/web-vue/es/icon';
+import { IconClose, IconDoubleDown, IconDoubleUp } from '@arco-design/web-vue/es/icon';
 
 
 export default {
     components: {
-        IconClose
+        IconClose, IconDoubleDown, IconDoubleUp
     },
     data() {
         return {
+            showMore: false,
             methods: [
                 { label: "GET", value: "GET" },
                 { label: "POST", value: "POST" },
@@ -97,7 +93,7 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss">
 .arco-tabs-nav-tab {
     justify-content: flex-start !important;
 }
@@ -107,13 +103,22 @@ export default {
 }
 
 .api_card {
-    /* border: 1px solid #333; */
+    border: 1px solid #dadada;
     /* margin: 10px auto;
     padding: 10px;
     width: 90%; */
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .demo-item{
     border: 1px solid #333;
+}
+.showMoreBar{
+    color: #aaa;
+    cursor: pointer;
+    text-align: center;
+    &:hover{
+        color: #165dff;
+        background-image: linear-gradient(#fff, #eee);
+    }
 }
 </style>
